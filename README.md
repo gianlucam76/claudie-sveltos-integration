@@ -20,6 +20,8 @@ This repo contains a controller that watches for these secrets and automatically
 
 Doing so, Sveltos seamlessly integrates with Claudie to automate Kubernetes cluster management. By monitoring for Claudie-created secrets containing kubeconfig information, Sveltos automatically discovers newly provisioned clusters and initiates the provisioning of add-ons and applications.
 
+![Sveltos Claudie integration](https://github.com/projectsveltos/sveltos/blob/main/docs/assets/claudie-sveltos.gif)
+
 ## Install 
 
 Once Claudie and Sveltos are deployed in the management cluster, to install this controller
