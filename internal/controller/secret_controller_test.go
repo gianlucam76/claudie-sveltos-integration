@@ -20,6 +20,7 @@ import (
 	"context"
 	"sync"
 
+	"github.com/go-logr/logr"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	"sigs.k8s.io/controller-runtime/pkg/client"
@@ -30,7 +31,6 @@ import (
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
-	"k8s.io/klog/v2/klogr"
 
 	"gianlucam76/claudie-sveltos-integration/internal/controller"
 
@@ -182,7 +182,7 @@ var _ = Describe("SecretReconciler", func() {
 			Namespace: sveltosCluster.Namespace, Name: sveltosCluster.Name,
 		}
 
-		Expect(controller.CleanSveltosCluster(reconciler, context.TODO(), secretRef, klogr.New())).To(BeNil())
+		Expect(controller.CleanSveltosCluster(reconciler, context.TODO(), secretRef, logr.Logger{})).To(BeNil())
 
 		currentSveltosCluster := &libsveltosv1alpha1.SveltosCluster{}
 		err := c.Get(context.TODO(),
@@ -255,7 +255,7 @@ var _ = Describe("SecretReconciler", func() {
 			},
 		}
 
-		Expect(controller.CreateSveltosCluster(reconciler, context.TODO(), secret, klogr.New())).To(Succeed())
+		Expect(controller.CreateSveltosCluster(reconciler, context.TODO(), secret, logr.Logger{})).To(Succeed())
 
 		currentSveltosClusters := &libsveltosv1alpha1.SveltosClusterList{}
 		Expect(c.List(context.TODO(), currentSveltosClusters)).To(Succeed())
