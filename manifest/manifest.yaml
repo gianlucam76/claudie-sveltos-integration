@@ -178,7 +178,7 @@ spec:
         - --metrics-bind-address=127.0.0.1:8080
         command:
         - /manager
-        image: projectsveltos/claudie-sveltos-controller:main
+        image: projectsveltos/claudie-sveltos-controller:v0.37.0
         livenessProbe:
           httpGet:
             path: /healthz
